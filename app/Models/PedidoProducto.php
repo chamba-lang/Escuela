@@ -11,6 +11,16 @@ class PedidoProducto extends Model
         'pedido_id',
         'cantidad',
     ];
+
+    public function pedido()
+    {
+        return $this->belongsTo(Pedido::class);
+    }
+
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class);
+    }
 }
 
 /* namespace App\Models;

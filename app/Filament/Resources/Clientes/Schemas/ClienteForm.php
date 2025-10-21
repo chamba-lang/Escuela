@@ -14,7 +14,7 @@ class ClienteForm
                 TextInput::make('nombre_completo')
                     ->required(),
                 TextInput::make('telefono')
-                    ->tel()
+                    ->numeric()
                     ->required(),
             ]);
     }
