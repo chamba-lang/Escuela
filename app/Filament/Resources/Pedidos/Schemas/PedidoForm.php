@@ -56,20 +56,19 @@ class PedidoForm
                 
         ]);
     }
-
     public static function updateTotals(Get $get, Set $set): void
-  {
-      $selectedProducts = collect($get('pedidoProductos'))->filter(fn($item) => !empty($item['producto_id']) && !empty($item['cantidad']));
-  
-      $precio = Producto::find($selectedProducts->pluck('producto_id'))->pluck('precio', 'id');
-  
-      $total = $selectedProducts->reduce(function ($total, $producto) use ($precio) {
-          return $total + ($precio[$producto['producto_id']] * $producto['cantidad']);
-      }, 0);
-  
-      $set('total', number_format($total, 2, '.', ''));
-      
-  }
+    {
+        $selectedProducts = collect($get('pedidoProductos'))->filter(fn($item) => !empty($item['producto_id']) && !empty($item['cantidad']));
+    
+        $precio = Producto::find($selectedProducts->pluck('producto_id'))->pluck('precio', 'id');
+    
+        $total = $selectedProducts->reduce(function ($total, $producto) use ($precio) {
+            return $total + ($precio[$producto['producto_id']] * $producto['cantidad']);
+        }, 0);
+    
+        $set('total', number_format($total, 2, '.', ''));
+        
+    }
 }
 
 

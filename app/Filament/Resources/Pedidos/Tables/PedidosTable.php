@@ -16,8 +16,7 @@ class PedidosTable
     {
         return $table
             ->columns([
-                TextColumn::make('cliente_id')
-                    ->numeric()
+                TextColumn::make('cliente.nombre_completo')
                     ->sortable(),
                 TextColumn::make('total')
                     ->money('mxn')
